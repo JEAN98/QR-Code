@@ -1,0 +1,53 @@
+﻿@model QRcode.Models.QRmodel
+
+@{
+    ViewBag.Title = "QR test";
+}
+
+<h2></h2>
+
+
+@using (Html.BeginForm("CodeCreation","QR",FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Creation of your QR code by URL</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label>
+                <span class="red">*&nbsp;</span><span class="bold">Write the url</span>
+            </label><br>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.URL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.URL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="update-profile-button" class="btn btn-primary ol-spiner" type="submit" value="Create QR code" />
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model != null)
+{
+    <label for="Image">This is your Qr CODE, now you can scan the picture</label>
+    var base64 = Convert.ToBase64String(Model.codeQr); //get the code by model
+    var imgSrc = String.Format("data:image/gif;base64,{0}", base64); //Let us to show the image 
+    <img src="@imgSrc" />
+}
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
