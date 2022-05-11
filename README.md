@@ -1,5 +1,5 @@
 # QR-Code
-It's an example where the users can to make QR Code, just with past the  link of page in the input.
+It's an example where the users can to make QR Code
 Only you must to install MessagingToolkit.QRCode in your nuget console.
 https://www.nuget.org/packages/MessagingToolkit.QRCode/
 The view I worked  with Razor and  in fact  is very simple to work.
